@@ -127,6 +127,11 @@ Laravel forgot password functionality implemented by default. Just, We have to c
 5) rest of the template mastering goes on.
 
 
+############# Admin Logout ################
+1) create a route inside admin middleware.
+2) execute this command to see the logout functionality : php artisan r:l
+3) copy the destroy method and paste it into the logout method.
+
 
 
 
