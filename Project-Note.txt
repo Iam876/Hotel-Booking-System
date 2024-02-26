@@ -110,7 +110,13 @@ Databse seeder used in development phase to work with dummy data instead of assi
 
 after that the first if block to check the user :if(!$user || !Hash::check($this->password, $user->password))
 
-outside of the if block : Auth::login($user,$this->boolean('remember',false)); 
+outside of the if block : Auth::login($user,$this->boolean('remember',false));
+
+############ Forgot Password ############
+
+Laravel forgot password functionality implemented by default. Just, We have to configure it.
+1) go to .env file.
+2) into the MAIL_MAILER portion we have to pass our all values from corresponding mail site. in here i'm using 'Mailtrap.io'
 
 
 
