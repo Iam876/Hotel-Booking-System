@@ -132,6 +132,18 @@ Laravel forgot password functionality implemented by default. Just, We have to c
 2) execute this command to see the logout functionality : php artisan r:l
 3) copy the destroy method and paste it into the logout method.
 
+############# Admin Login Signin Page Configure #################
+1) Create a route for admin login.
+2) Copy login template code and paste it into admin section page.
+
+############# Admin Custom Reset Password Configure ################
+1) first run this command : php artisan make:mail FolderName/FileName [this project : php artisan make:mail AdminResetPassword\adminResetPassword]
+2) create some blade for forgotPassword,ResetForm,emailTemplate.
+3) create route for this.
+4) write code into adminController.
+5) configure the AdminResetPassword\adminResetPassword.
+
+for detailed view see the code comment. 
 
 
 
