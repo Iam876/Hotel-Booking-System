@@ -1,0 +1,4 @@
+1) VSCode Great Icons extensions
+2) Laravel Extra Intellisense
+3) Rainbow Brackets
+4) Laravel Blade Spacer

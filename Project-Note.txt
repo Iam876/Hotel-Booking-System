@@ -1,0 +1,136 @@
+####################### Laravel Setup ####################### 
+
+1) Install Xampp server
+2) Install Nodejs
+3) Install Composer
+4) Install Code Editor [VS Code]
+5) Go to htdocs and run the laravel installer command
+6) Create a database and configure it into laravel .env file
+
+
+####################### Install Laravel Breeze ##############
+
+1) Laravel -> Packages -> Breeze -> open terminal & paste this command 'composer require laravel/breeze --dev'
+2) after that insert this command 'php artisan breeze:install' [it will add some file, codes and folders into : view,controller,migration,web]
+3) Now go to the database -> migrations -> create_user_table.php and add some fields if required.
+4) after configure the step 3, Then execute this command 'php artisan migrate'
+5) now we have to update the modal for fillable property of the custom field. [app->Models->User.php] in here fillable property should be fillable. check written comment I have done there.
+6) after that execute command 'php artisan migrate'. Now the basic login features enabled successfully.
+
+
+####################### Database Seeder #####################
+
+Databse seeder used in development phase to work with dummy data instead of assigning the data by user itself to avoid time consuming.
+1) open terminal and run this : 'php artisan make:seeder UserSeederTable' .
+2) Now on 'UserSeederTable' I have to write some code :
+	DB::table('users')->insert([
+            // For Admin Seeder
+            [
+            'name' => 'Md Ibrahim',
+            'username' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => HASH::make('111'),
+            'role' => 'admin',
+            'status' => 'active'
+            ],
+            // For User Seeder
+            [
+                'name' => 'Md Masud',
+                'username' => 'User',
+                'email' => 'user@user.com',
+                'password' => HASH::make('111'),
+                'role' => 'user',
+                'status' => 'active',
+            ]
+            ]);
+3) On 'DatabaseSeeder' import the 'UserSeederTable' as like :
+
+	public function run(): void
+    {
+        $this->call(UserSeederTable::class);
+    }
+4) after that execute this command: 'php artisan migrate:fresh --seed'
+
+
+####################### Multi Authentication #####################
+1) Create a controller as 'AdminController'. open terminal: 'php artisan make:controller AdminController'
+2) routes->web.php create a route as '\admin\dashboard'. and configure it into the AdminController
+3) for \admin\dashboard in the resources->views folder -> create folder 'admin' -> create file 'admindashboard.blade.php'. and see on browser is it working or not.
+4) terminal: 'php artisan r:l' to know how & where the login registration function works.
+5) app->Http->Controllers->Auth 'AuthenticatedSessionController' go to the store function. and change the code to redirection between multiple users dashboard. here the code:
+	public function store(LoginRequest $request): RedirectResponse
+    {
+        $request->authenticate();
+
+        $request->session()->regenerate();
+        // Ibrahim: Custom parameter to switch between admin & users while authenticated
+        $urlPath = '';
+        if($request->user()->role === 'admin'){
+            $urlPath = '/admin/dashboard';
+        }
+        elseif($request->user()->role === 'user'){
+            $urlPath = '/dashboard';
+        }
+
+        return redirect()->intended($urlPath);
+    }
+6) after that functionality it works fine but had issues like user can access admin route. also admin can access user route. To PREVENT THIS WE HAVE TO USE 'MIDDLEWARE'.
+
+## MIDDLEWARE ##
+
+7) terminal : 'php artisan make:middleware adminRole' first execute it and then go to the app->Http->kernal to register this middleware.
+
+8) kernel -> inside of $middlewareAliases insert this anywhere: 'roleMiddleware' => \App\Http\Middleware\adminRole::class, [here roleMiddleware is middlewaretoken name and adminRole is class file where we configure it.]
+
+9) adminRole.php -> inside the handle add a parameter as $role or anything. code: 
+	 public function handle(Request $request, Closure $next, $role): Response
+    {
+        if($request->user()->role !== $role){
+            return redirect('/dashboard');
+        }
+        return $next($request);
+    }
+
+10) Now go web.php and write the below code: 
+	Route::middleware(['auth', 'roleMiddleware:admin'])->group(function () {
+    All admin related route and admin dashboard route should have inside here.
+	}); * here 'auth' is to check user authenticated or not. and 'roleMiddleware' is to check if admin login then he has access of /admin/dashboard and /dashboard. but normal user don't have the rights to access the /admin/dashboard. It prevents on step 9, by role! == $role.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
