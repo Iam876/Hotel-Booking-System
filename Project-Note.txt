@@ -116,8 +116,15 @@ outside of the if block : Auth::login($user,$this->boolean('remember',false));
 
 Laravel forgot password functionality implemented by default. Just, We have to configure it.
 1) go to .env file.
-2) into the MAIL_MAILER portion we have to pass our all values from corresponding mail site. in here i'm using 'Mailtrap.io'
+2) into the MAIL_MAILER portion we have to pass our all values from corresponding mail site. in here i'm using 'Mailtrap.io' also can be used any hosting site.
 
+############## Admin Dashboard Setup with Template ##############
+
+1) Copy the assets file of the template.
+2) public -> create folder [backend]-> inside backend paste the asset file.
+3) copy index.html file code and paste into -> resources->views->admin-> paste inside adminDashboard. after that create a folder like 'body'.
+4) to connect with the asset folder we have to write this code before the path: {{asset('backend')}}
+5) rest of the template mastering goes on.
 
 
 
