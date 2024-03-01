@@ -146,6 +146,94 @@ Laravel forgot password functionality implemented by default. Just, We have to c
 for detailed view see the code comment. 
 
 
+############# Admin Template Refresh ################
+1) Simply modified the sidebar of admin panel.
+2) Modified the index blade file, by removing unwanted code.
+
+############# Admin Profile Setup ################
+1) First create a route admin.profile and blade file.
+2) in the route method here code : 
+public function AdminProfile(){
+$id = Auth::user()->id;
+$profileData = User::find($id);
+return view("admin.adminProfile",compact("profileData"));
+}
+This code is for redirecting to profile page with passing data.
+3) Now fetch the compact data.
+4) put a condition on image src="{{ !empty($profileData->photo)? url('upload/adminImages') : url('upload/no_image.jpg') }}"
+
+5) For upload image and preview. at first we have to take a input field with an ID. also we have to take an image field for preview image. here is the jquery code: 
+$(document).ready(function(){
+    $("#uploadImage").change(function(e){
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $("#showImage").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+});
+
+6.1) Change Password -> make a page. 
+6.2) Update functionality implemented. here is the code: 
+public function AdminChangePasswordStore(Request $request){
+    $request->validate([
+        'old_password'=>'required',
+        'new_password'=>'required|confirmed'
+    ]);
+
+    if(!Hash::check($request->old_password, Auth::user()->password)){
+        $notification = array(
+            'message' => "Old Password doesn't matched",
+            'alert-type' => 'error'
+        );
+        return back()->with($notification);
+    }
+
+    User::whereId(Auth::user()->id)->update([
+        'password' => Hash::make($request->new_password)
+    ]);
+    $notification = array(
+        'message' => 'Password Changed Successfully',
+        'alert-type' => 'success'
+    );
+    return back()->with($notification);
+}
+
+6.3) For Toaster message: first link css and js file. after that below code with link and js: 
+
+
+ <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+     
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+ @if(Session::has('message'))
+ var type = "{{ Session::get('alert-type','info') }}"
+ switch(type){
+    case 'info':
+    toastr.info(" {{ Session::get('message') }} ");
+    break;
+
+    case 'success':
+    toastr.success(" {{ Session::get('message') }} ");
+    break;
+
+    case 'warning':
+    toastr.warning(" {{ Session::get('message') }} ");
+    break;
+
+    case 'error':
+    toastr.error(" {{ Session::get('message') }} ");
+    break; 
+ }
+ @endif 
+</script>
+
+
+
+
 
 
 

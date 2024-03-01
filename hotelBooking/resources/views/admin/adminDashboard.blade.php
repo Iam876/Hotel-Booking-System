@@ -12,6 +12,8 @@
 	<link href="{{ asset('backend') }}/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="{{ asset('backend') }}/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
 	<link href="{{ asset('backend') }}/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+
 	<!-- loader-->
 	<link href="{{ asset('backend') }}/assets/css/pace.min.css" rel="stylesheet"/>
 	<script src="{{ asset('backend') }}/assets/js/pace.min.js"></script>
@@ -25,6 +27,9 @@
 	<link rel="stylesheet" href="{{ asset('backend') }}/assets/css/dark-theme.css"/>
 	<link rel="stylesheet" href="{{ asset('backend') }}/assets/css/semi-dark.css"/>
 	<link rel="stylesheet" href="{{ asset('backend') }}/assets/css/header-colors.css"/>
+
+    {{-- Toaster CSS --}}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 	<title>Admin | Dashboard</title>
 </head>
 
@@ -110,8 +115,9 @@
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('backend') }}/assets/js/bootstrap.bundle.min.js"></script>
+
 	<!--plugins-->
-	<script src="{{ asset('backend') }}/assets/js/jquery.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/js/jquery.min.js"></script>
 	<script src="{{ asset('backend') }}/assets/plugins/simplebar/js/simplebar.min.js"></script>
 	<script src="{{ asset('backend') }}/assets/plugins/metismenu/js/metisMenu.min.js"></script>
 	<script src="{{ asset('backend') }}/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
@@ -119,11 +125,90 @@
     <script src="{{ asset('backend') }}/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<script src="{{ asset('backend') }}/assets/plugins/chartjs/js/chart.js"></script>
 	<script src="{{ asset('backend') }}/assets/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 	<!--app JS-->
 	<script src="{{ asset('backend') }}/assets/js/app.js"></script>
 	<script>
 		new PerfectScrollbar(".app-container")
 	</script>
+    <script>
+
+        // Scrollbar Start
+        new PerfectScrollbar(".app-container")
+        // Scrollbar End
+        // Date Picker Start
+        $(".datepicker").flatpickr({
+            maxDate: "today",
+            onChange: function(selectedDates, dateStr, instance) {
+                var selectedDate = new Date(dateStr);
+                var today = new Date();
+                var minAllowedDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate()); // 18 years ago from today
+                if (selectedDate > minAllowedDate) {
+                    instance.clear();
+                    alert("Please select a date that is at least 18 years ago.");
+                }
+            }
+        });
+
+        $(".time-picker").flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "Y-m-d H:i",
+            });
+
+        $(".date-time").flatpickr({
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+        });
+
+        $(".date-format").flatpickr({
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+
+        $(".date-range").flatpickr({
+            mode: "range",
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+
+        $(".date-inline").flatpickr({
+            inline: true,
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+        // Date Picker End
+
+        // Toaster Message Part Start
+        @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type','info') }}"
+            switch(type){
+                case 'info':
+                toastr.info(" {{ Session::get('message') }} ");
+                break;
+
+                case 'success':
+                toastr.success(" {{ Session::get('message') }} ");
+                break;
+
+                case 'warning':
+                toastr.warning(" {{ Session::get('message') }} ");
+                break;
+
+                case 'error':
+                toastr.error(" {{ Session::get('message') }} ");
+                break;
+            }
+        @endif
+        // Toaster Message Part End
+
+
+</script>
 </body>
 
 </html>
