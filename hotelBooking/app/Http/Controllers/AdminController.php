@@ -94,39 +94,6 @@ class AdminController extends Controller
         return view('admin.forgotPassword.AdminResetPasswordForm', ['token' => $token]);
     }
 
-//     public function AdminResetPasswordStore(Request $request)
-// {
-//     $request->validate([
-//         'token' => ['required'],
-//         'password' => ['required', 'confirmed'],
-//     ], [
-//         'password.confirmed' => 'The password confirmation does not match.',
-//     ]);
-
-//     // Retrieve the user by reset_token
-//     $user = User::where('reset_token', $request->token)->first();
-
-//     if (!$user) {
-//         return back()->withErrors(['token' => __('Invalid token')]);
-//     }
-
-//     // Check if password and confirmation match
-//     if ($request->password !== $request->password_confirmation) {
-//         return back()->withErrors(['password' => 'The password confirmation does not match.'])->withInput();
-//     }
-
-//     // Update the user's password
-//     $user->password = Hash::make($request->password);
-
-//     // Reset the reset_token after password update
-//     $user->reset_token = null;
-
-//     // Save the user
-//     $user->save();
-
-//     return redirect()->route('login')->with('status', __('Password has been reset successfully'));
-// }
-
 public function AdminResetPasswordStore(Request $request)
 {
     $request->validate([

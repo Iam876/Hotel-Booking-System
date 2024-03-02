@@ -4,10 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminController;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\UserController\UserController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -21,7 +18,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
+// ######################### Start Admin Panel #########################
 Route::middleware(['auth', 'roleMiddleware:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
@@ -40,3 +37,8 @@ Route::post('/admin/password-link-sent', [AdminController::class, 'AdminResetLin
 Route::get('/admin/reset-password/{token}', [AdminController::class, 'AdminResetPasswordForm'])->name('admin.reset-password-form');
 Route::post('/admin/reset-password/store', [AdminController::class, 'AdminResetPasswordStore'])->name('admin.reset-password-store');
 
+// ######################### End Admin Panel #########################
+
+// ######################### Start Frontend #######################
+Route::get('/', [UserController::class, 'Index']);
+// ######################### End Frontend #########################

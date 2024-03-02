@@ -231,6 +231,14 @@ public function AdminChangePasswordStore(Request $request){
  @endif 
 </script>
 
+################### Frontend Setup ########################
+date:3/2/2024
+
+1) Frontend blade setup.
+2) Template mastering.
+3) Login,Register,forgot-password,reset-password template has been re-designed.
+
+
 
 
 
