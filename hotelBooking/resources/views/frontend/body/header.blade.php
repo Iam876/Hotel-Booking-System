@@ -28,8 +28,17 @@
                             <i class='bx bx-envelope'></i>
                             <a href="mailto:hello@atoli.com">admin@hotelBooking.com</a>
                         </li>
+                        @auth
                         <li>
-                            {{-- <i class='bx user-rectangle'></i> --}}
+                            <i class='bx bxs-user-rectangle'></i>
+                            <a href="{{ route('user.dashboard') }}">Dashboard</a>
+                        </li>
+                        <li>
+                            <i class='bx bxs-user-rectangle'></i>
+                            <a href="{{ route('user.logout') }}">Logout</a>
+                        </li>
+                        @else
+                        <li>
                             <i class='bx bxs-user-rectangle'></i>
                             <a href="{{ route('login') }}">Sign In</a>
                         </li>
@@ -37,6 +46,7 @@
                             <i class='bx bxs-user-rectangle'></i>
                             <a href="{{ route('register') }}">Sign Up</a>
                         </li>
+                        @endauth
                     </ul>
                 </div>
             </div>

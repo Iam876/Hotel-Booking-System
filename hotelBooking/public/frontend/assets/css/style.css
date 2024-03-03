@@ -7,7 +7,7 @@ template.
 
 *******************************************
 *******************************************
-** - Default Btn Style 
+** - Default Btn Style
 ** - Section Title Style
 ** - Top Header Style
 ** - Navbar Area Style
@@ -157,7 +157,7 @@ img {
 }
 
 /*================================
-Default Btn Style 
+Default Btn Style
 ===================================*/
 .default-btn {
   display: inline-block;
@@ -229,7 +229,7 @@ Default Btn Style
 Default Btn Style End
 ===================================*/
 /*================================
-Section Title Style 
+Section Title Style
 ===================================*/
 .section-title span {
   line-height: 0;
@@ -1325,7 +1325,7 @@ Main Banner Area
 Main Banner Area End
 ====================================*/
 /*=================================
-Banner Form Area 
+Banner Form Area
 ====================================*/
 .banner-form {
   position: relative;
@@ -1561,7 +1561,7 @@ Inner Banner
 }
 
 /*=================================
-About Area 
+About Area
 ====================================*/
 .about-img {
   max-width: 540px;
@@ -1928,7 +1928,7 @@ Gallery Area
 Gallery Area End
 ====================================*/
 /*=================================
-Services Area 
+Services Area
 ====================================*/
 .services-area {
   position: relative;
@@ -2411,7 +2411,7 @@ Services Area
 Services Area End
 ====================================*/
 /*=================================
-Reservation Area 
+Reservation Area
 ====================================*/
 .reservation-content {
   margin-bottom: 30px;
@@ -2521,7 +2521,7 @@ Reservation Area
 Reservation Area End
 ====================================*/
 /*=================================
-Ability Area 
+Ability Area
 ====================================*/
 .ability-content .section-title {
   margin-bottom: 30px;
@@ -2608,7 +2608,7 @@ Ability Area
 Ability Area End
 ====================================*/
 /*=================================
-Specialty Area 
+Specialty Area
 ====================================*/
 .specialty-area .section-title h2 {
   max-width: 540px;
@@ -3708,7 +3708,7 @@ Testimonials Area
 Testimonials Area End
 ====================================*/
 /*=================================
-Faq Area 
+Faq Area
 ====================================*/
 .faq-img {
   margin-bottom: 30px;
@@ -3861,7 +3861,7 @@ Faq Area
 Faq Area End
 ====================================*/
 /*=================================
-Contact Area 
+Contact Area
 ====================================*/
 .contact-content .section-title {
   margin-bottom: 30px;
@@ -4062,7 +4062,7 @@ Contact Area
 Contact Area End
 ====================================*/
 /*=================================
-Map Area 
+Map Area
 ====================================*/
 .map-area iframe {
   display: block;
@@ -4127,7 +4127,7 @@ User All Form
 User All Form End
 ====================================*/
 /*=================================
-Team Area 
+Team Area
 ====================================*/
 .team-area .section-title h2 {
   max-width: 640px;
@@ -4449,7 +4449,9 @@ Team Area
   margin-left: auto;
   margin-right: auto;
 }
-
+.active-profile-menu{
+    background-color: #EE786C !important;
+}
 /*=================================
 Team Area End
 ====================================*/
@@ -4623,7 +4625,7 @@ Booking Area
 Booking Area End
 ====================================*/
 /*=================================
-Checkout Area 
+Checkout Area
 ===================================*/
 .billing-details {
   margin-bottom: 30px;
@@ -5531,7 +5533,7 @@ Blog Area
 Blog Area End
 ====================================*/
 /*=================================
-Restaurant Item 
+Restaurant Item
 ====================================*/
 .restaurant-item {
   padding: 20px;
@@ -5577,7 +5579,7 @@ Restaurant Item
 Restaurant Item End
 ====================================*/
 /*==============================
-Pagination Area 
+Pagination Area
 =================================*/
 .pagination-area {
   margin-top: 10px;
@@ -5660,8 +5662,8 @@ Pagination Area End
 /*=================================
 404 Error Area End
 ===================================*/
-/*================================== 
-Coming Soon Area 
+/*==================================
+Coming Soon Area
 ====================================*/
 .coming-soon-area {
   position: relative;
@@ -5851,7 +5853,7 @@ Coming Soon Area
   color: #dc3545 !important;
 }
 
-/*================================== 
+/*==================================
 Coming Soon Area End
 ====================================*/
 /*=================================
@@ -6054,7 +6056,7 @@ Footer Area
 Footer Area End
 ====================================*/
 /*==================================
-Back To Top Button 
+Back To Top Button
 =====================================*/
 #toTop {
   position: fixed;
@@ -6088,7 +6090,7 @@ Back To Top Button
 }
 
 /*==============================
-Back To Top Button 
+Back To Top Button
 =================================*/
 /*=================================
 Buy Now Btn
@@ -6129,7 +6131,7 @@ Buy Now Btn
 Buy Now Btn End
 ====================================*/
 /*==============================
-PreLoader CSS 
+PreLoader CSS
 =================================*/
 .preloader {
   background: #1B2132;

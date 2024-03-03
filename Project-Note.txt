@@ -239,6 +239,14 @@ date:3/2/2024
 3) Login,Register,forgot-password,reset-password template has been re-designed.
 
 
+################### Frontend User Profile Setup ########################
+date: 3/4/2024
+
+1) First template mastering of user dashboard into separate files.
+2) Creating Route and Functionality implemented for both [userDashboard,userProfile,changePassword,billingList,Logout] both into route path configuration.
+
+
+
 
 
 

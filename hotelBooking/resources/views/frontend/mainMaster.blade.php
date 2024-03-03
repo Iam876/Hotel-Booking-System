@@ -30,7 +30,10 @@
         <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/responsive.css">
         <!-- Theme Dark CSS -->
         <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/theme-dark.css">
-
+        <!-- FlatPicker-->
+        <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+        {{-- Toaster CSS --}}
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="{{ asset('frontend') }}/assets/img/favicon.png">
 
@@ -54,7 +57,7 @@
         <!-- PreLoader End -->
 
         <!-- Top Header Start -->
-@include("frontend.body.header")
+        @include("frontend.body.header")
         <!-- Top Header End -->
 
         <!-- Start Navbar Area -->
@@ -92,6 +95,84 @@
         <script src="{{ asset('frontend') }}/assets/js/contact-form-script.js"></script>
         <!-- Custom JS -->
         <script src="{{ asset('frontend') }}/assets/js/custom.js"></script>
+        <!-- Flat Picker -->
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <!-- File Upload Preview User -->
+        <script src="{{ asset('backend/customJS/uploadImagePreview.js') }}"></script>
+        {{-- Start Toaster JS --}}
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+        <script>
+            // Date Picker Start
+        $(".datepicker").flatpickr({
+            maxDate: "today",
+            onChange: function(selectedDates, dateStr, instance) {
+                var selectedDate = new Date(dateStr);
+                var today = new Date();
+                var minAllowedDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate()); // 18 years ago from today
+                if (selectedDate > minAllowedDate) {
+                    instance.clear();
+                    alert("Please select a date that is at least 18 years ago.");
+                }
+            }
+        });
+
+        $(".time-picker").flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "Y-m-d H:i",
+            });
+
+        $(".date-time").flatpickr({
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+        });
+
+        $(".date-format").flatpickr({
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+
+        $(".date-range").flatpickr({
+            mode: "range",
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+
+        $(".date-inline").flatpickr({
+            inline: true,
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+        // Date Picker End
+
+        // Start Toast Message
+        @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type','info') }}"
+            switch(type){
+                case 'info':
+                toastr.info(" {{ Session::get('message') }} ");
+                break;
+
+                case 'success':
+                toastr.success(" {{ Session::get('message') }} ");
+                break;
+
+                case 'warning':
+                toastr.warning(" {{ Session::get('message') }} ");
+                break;
+
+                case 'error':
+                toastr.error(" {{ Session::get('message') }} ");
+                break;
+            }
+        @endif
+        // End Toast Message
+        </script>
 
     </body>
 </html>

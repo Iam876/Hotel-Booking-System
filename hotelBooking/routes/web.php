@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +41,19 @@ Route::post('/admin/reset-password/store', [AdminController::class, 'AdminResetP
 
 // ######################### Start Frontend #######################
 Route::get('/', [UserController::class, 'Index']);
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/user/logout', [UserController::class, 'userLogout'])->name('user.logout');
+
+    Route::get('/user/profile', [UserController::class, 'userProfile'])->name('user.profile');
+    Route::post('/user/profile/store', [UserController::class, 'userProfileStore'])->name('user.profile.store');
+
+    Route::get('/user/change/password', [UserController::class, 'userChangePassword'])->name('user.change.password');
+    Route::post('/user/change/password/store', [UserController::class, 'userChangePasswordStore'])->name('user.change.password.store');
+
+    Route::get('/user/booking/list', [UserController::class, 'userBookingList'])->name('user.booking.list');
+
+});
 // ######################### End Frontend #########################
