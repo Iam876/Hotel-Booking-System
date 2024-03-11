@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
@@ -14,7 +15,14 @@ use App\Models\User;
 class AdminController extends Controller
 {
     public function AdminDashboard(){
-        return view('admin.index');
+        header('Cache-Control: no-cache, no-store, must-revalidate');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+        $id = Auth::user()->id;
+        $profileData = User::find($id);
+
+    return view('admin.index',compact("profileData"));
+
     } // Admin dashboard Redirect
 
 
@@ -26,7 +34,7 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/admin/login');
     }// Logout functionality
 
 

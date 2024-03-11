@@ -16,11 +16,11 @@ class UserController extends Controller
     }
 
     // User Dashboard
-    public function dashboard(){
-        $id = Auth::user()->id;
-        $userProfileData = User::find($id);
-        return view('frontend.dashboard.userDashboard',compact("userProfileData"));
-    }
+    // public function dashboard(){
+    //     $id = Auth::user()->id;
+    //     $userProfileData = User::find($id);
+    //     return view('frontend.dashboard.userDashboard',compact("userProfileData"));
+    // }
     // User Profile
     public function userProfile(){
         $id = Auth::user()->id;

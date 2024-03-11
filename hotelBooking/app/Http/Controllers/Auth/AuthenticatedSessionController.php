@@ -28,16 +28,36 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        // Ibrahim: Custom parameter to switch between admin & users while authenticated
-        $urlPath = '';
-        if($request->user()->role === 'admin'){
-            $urlPath = '/admin/dashboard';
-        }
-        elseif($request->user()->role === 'user'){
-            $urlPath = '/dashboard';
-        }
 
-        return redirect()->intended($urlPath);
+         // Check if the user is an admin and already logged in
+    if($request->user()->role === 'admin' && $request->session()->has('authenticated_as_admin')) {
+        return redirect('/admin/dashboard');
+    }
+
+    // Set authenticated_as_admin flag in session for admin users
+    if($request->user()->role === 'admin') {
+        $request->session()->put('authenticated_as_admin', true);
+    }
+
+    // $url = '';
+    // if($request->user()->role === 'admin'){
+    //     $url = '/admin/dashboard';
+    // } elseif($request->user()->role === 'user'){
+    //     $url = '/dashboard';
+    // }
+
+    $url = $request->user()->role === 'admin' ? '/admin/dashboard' : '/dashboard';
+
+    // return redirect()->intended($url);
+
+        // $urlPath = '';
+        // if($request->user()->role === 'admin'){
+        //     $urlPath = '/admin/dashboard';
+        // } elseif($request->user()->role === 'user'){
+        //     $urlPath = '/dashboard';
+        // }
+
+        return redirect()->intended($url);
     }
 
     /**

@@ -8,8 +8,8 @@
 
                 <ul>
 
-                    <li class="{{ Route::currentRouteName() === 'user.dashboard' ? 'active-profile-menu' : '' }}">
-                        <a href="{{ Route("user.dashboard") }}">User Dashboard</a>
+                    <li class="{{ Route::currentRouteName() === 'dashboard' ? 'active-profile-menu' : '' }}">
+                        <a href="{{ Route("dashboard") }}">User Dashboard</a>
                     </li>
                     <li class="{{ Route::currentRouteName() === 'user.profile' ? 'active-profile-menu' : '' }}">
                         <a href="{{ Route("user.profile") }}">User Profile </a>

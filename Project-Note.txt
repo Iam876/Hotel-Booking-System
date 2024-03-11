@@ -245,6 +245,12 @@ date: 3/4/2024
 1) First template mastering of user dashboard into separate files.
 2) Creating Route and Functionality implemented for both [userDashboard,userProfile,changePassword,billingList,Logout] both into route path configuration.
 
+################### Backend Team Setup ########################
+date: 3/11/2024
+
+1) Team controller created
+2) TeamAjax file for the ajax functionality
+3) Team blade with modal box.
 
 
 

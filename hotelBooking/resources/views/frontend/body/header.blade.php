@@ -31,7 +31,7 @@
                         @auth
                         <li>
                             <i class='bx bxs-user-rectangle'></i>
-                            <a href="{{ route('user.dashboard') }}">Dashboard</a>
+                            <a href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <li>
                             <i class='bx bxs-user-rectangle'></i>

@@ -19,17 +19,17 @@
             </a>
         </li>
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="{{ Route('all.team') }}" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title">Application</div>
+                <div class="menu-title">Team</div>
             </a>
-            <ul>
+            {{-- <ul>
                 <li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Email</a>
                 </li>
                 <li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Chat Box</a>
                 </li>
-            </ul>
+            </ul> --}}
         </li>
         <li class="menu-label">UI Elements</li>
         <li>
