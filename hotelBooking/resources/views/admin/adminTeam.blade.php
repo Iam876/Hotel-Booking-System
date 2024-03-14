@@ -193,7 +193,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <img class="mb-0 w-25" id="showEditImage" src="{{ url('upload/no_image.jpg') }}"
+                                            <img class="mb-0 w-25" id="showImage" src="{{ url('upload/no_image.jpg') }}"
                                                 alt="">
                                         </div>
                                         <div class="col-md-12">

@@ -59,11 +59,22 @@ Route::middleware(['auth', 'roleMiddleware:admin'])->group(function () {
         Route::post('/update/team/{id}', 'UpdateTeam');
     });
     // ######################### Admin Team Manage End #########################
+
+    // ######################### Admin Book Area Start #########################
+    Route::controller(TeamController::class)->group(function(){
+        Route::get('/book/area', 'BookArea')->name('book.area');
+        Route::get('/booking/area/show', 'BookAreaShow');
+        Route::post('/booking/area/update/{id}', 'BookAreaUpdate');
+    });
+    // ######################### Admin Book Area End #########################
 });
 
 
 // ######################### Start Frontend #######################
+
 Route::get('/', [UserController::class, 'Index']);
+
+// Start Quick Booking portion
 
 
 Route::middleware('auth')->group(function () {

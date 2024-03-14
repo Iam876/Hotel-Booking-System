@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Team;
+use App\Models\BookArea;
 use Carbon\Carbon;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -168,6 +169,64 @@ class TeamController extends Controller
             'status' => 'Team Updated Successfully'
         ]);
 
+    }
+
+    // Start Book Area
+    public function BookArea(){
+        $id = Auth::user()->id;
+        $profileData = User::find($id);
+        return view('admin.adminBookArea',compact('profileData'));
+    }
+    // End Book Area
+
+    public function BookAreaShow(){
+        $bookArea = BookArea::first();
+
+        return response()->json([
+            'status' => 200,
+            'Alldata' => $bookArea
+        ]);
+    }
+
+    public function BookAreaUpdate(Request $request,$id){
+
+        $request->validate([
+            'BookingUploadImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'BookingShortDescription' => 'required',
+            'BookingTitle' => 'required',
+            'BookingDescription' => 'required',
+            'BookingURL' => 'nullable|url',
+
+        ]);
+
+        $bookingID = BookArea::findorFail($id);
+
+        if($request->hasFile('BookingUploadImage')){
+            if($bookingID->image !== null){
+                @unlink($bookingID->image);
+            }
+            $manager = new ImageManager(new Driver());
+            $BookingUploadImage = $request->file('BookingUploadImage');
+            $BookingUploadImageGenerate = hexdec(uniqid()).'.'.$BookingUploadImage->getClientOriginalExtension();
+            $image = $manager->read($BookingUploadImage);
+            $image = $image->resize(546,546);
+            $image->toJpeg(80)->save(base_path('public/upload/BookAreaImage/'.$BookingUploadImageGenerate));
+            $save_url = 'upload/BookAreaImage/'.$BookingUploadImageGenerate;
+        }
+
+        $bookingID->update([
+            'short_desc' => $request->BookingShortDescription,
+            'title' => $request->BookingTitle,
+            'long_desc' => $request->BookingDescription,
+            'url' => $request->BookingURL,
+            'image' => $save_url,
+            'created_at' => Carbon::now(),
+        ]);
+
+        return response()->json([
+            'status'=>200,
+            'message'=>'Booking Area Updated Successfully'
+        ]);
     }
 
 }

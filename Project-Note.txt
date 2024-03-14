@@ -252,6 +252,16 @@ date: 3/11/2024
 2) TeamAjax file for the ajax functionality
 3) Team blade with modal box.
 
+################### Backend Booking Area Setup ########################
+
+date: 3/14/2024
+
+1) Functionality implemented in TeamControoler
+2) BookArea Model,Migration Table setup,
+3) Ajax file -> BookAreaAjax.js
+4) Blade template setup -> admin/adminBookArea.blade.php
+
+
 
 
 

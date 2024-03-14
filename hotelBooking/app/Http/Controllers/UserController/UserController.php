@@ -8,19 +8,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
+use App\Models\Team;
 
 class UserController extends Controller
 {
     public function Index(){
-        return view("frontend.index");
+        // Frontend Team data pass
+        $teams = Team::where('status','active')->latest()->get();
+        return view("frontend.index",compact('teams'));
     }
 
-    // User Dashboard
-    // public function dashboard(){
-    //     $id = Auth::user()->id;
-    //     $userProfileData = User::find($id);
-    //     return view('frontend.dashboard.userDashboard',compact("userProfileData"));
-    // }
     // User Profile
     public function userProfile(){
         $id = Auth::user()->id;

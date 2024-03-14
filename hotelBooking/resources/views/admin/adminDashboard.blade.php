@@ -144,8 +144,14 @@
     <script src="{{ asset('backend') }}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="{{ asset('backend') }}/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
 
+    {{-- Convert into different files --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script>
+
+
     {{-- AJAX CODE --}}
     <script src="{{ asset('backend') }}/customJS/TeamAjax.js"></script>
+    <script src="{{ asset('backend') }}/customJS/BookAreaAjax.js"></script>
 
 	<!--app JS-->
 	<script src="{{ asset('backend') }}/assets/js/app.js"></script>
